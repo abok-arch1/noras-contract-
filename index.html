@@ -15,17 +15,22 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: var(--bg-color);
             margin: 0;
-            padding: 10px;
+            padding: 0; /* تم إزالة الحشو الخارجي */
             color: var(--text-color);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
         .contract-container {
             background-color: #fff;
-            max-width: 800px;
+            width: 95%; /* تجعل الصفحة تملأ معظم عرض الشاشة */
+            max-width: 1200px; /* سعة قصوى أكبر لتناسب الشاشات الكبيرة */
             margin: 20px auto;
-            padding: 40px 30px;
+            padding: 40px;
             border-radius: 12px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             border-top: 10px solid var(--primary-color);
+            flex-grow: 1;
         }
         .header { text-align: center; margin-bottom: 40px; }
         .logo { 
@@ -33,17 +38,16 @@
             width: 100%;
             height: auto; 
             margin-bottom: 15px;
-            filter: drop-shadow(0px 4px 6px rgba(0,0,0,0.05));
         }
-        h1 { color: var(--primary-color); font-size: 26px; margin: 0; }
+        h1 { color: var(--primary-color); font-size: 28px; margin: 0; }
         .contract-title { 
-            font-size: 18px; 
+            font-size: 20px; 
             font-weight: bold; 
             color: #d63031; 
             margin-top: 10px;
             display: block;
         }
-        .section { margin-bottom: 25px; line-height: 1.8; text-align: justify; }
+        .section { margin-bottom: 25px; line-height: 1.8; text-align: justify; font-size: 17px; }
         .section-title { 
             font-weight: bold; 
             color: var(--primary-color); 
@@ -51,16 +55,16 @@
             display: block; 
             border-right: 5px solid var(--primary-color); 
             padding-right: 12px;
-            font-size: 18px;
+            font-size: 20px;
         }
         .highlight-box {
             background-color: #fffbf0;
             border: 1px solid #ffeaa7;
-            padding: 20px;
+            padding: 25px;
             border-radius: 8px;
             margin: 20px 0;
         }
-        .highlight-box b { color: #d35400; font-size: 17px; }
+        .highlight-box b { color: #d35400; font-size: 18px; }
         .input-area {
             background-color: #f8f9fa;
             padding: 30px;
@@ -86,7 +90,7 @@
             text-decoration: none;
             border-radius: 8px;
             font-weight: bold;
-            font-size: 18px;
+            font-size: 20px;
             width: 100%;
             border: none;
             cursor: pointer;
@@ -97,15 +101,12 @@
         .footer { 
             text-align: center; 
             color: #95a5a6; 
-            font-size: 12px; 
+            font-size: 14px; 
             margin-top: 30px; 
-            border-top: 1px solid #eee;
-            padding-top: 20px;
+            padding-bottom: 20px;
         }
         @media (max-width: 600px) {
-            .contract-container { padding: 20px 15px; margin: 10px; }
-            h1 { font-size: 22px; }
-            .logo { max-width: 220px; }
+            .contract-container { width: 92%; padding: 20px; }
         }
     </style>
 </head>
@@ -136,11 +137,10 @@
 
     <div class="section">
         <span class="section-title">ثالثاً: الالتزامات المالية للطرف الثاني</span>
-        يقر الطرف الثاني بالتزامه بدفع الرسوم التالية:
+        يقر الطرف الثاني بالتزامه بدفع المبالغ التالية:
         <div class="highlight-box">
             1. <b>200,000 ج.س:</b> رسوم تثبيت الوظيفة وعدم منحها لمرشح آخر (تدفع فور التوقيع).<br>
-            2. <b>3,000,000 ج.س:</b> أتعاب الوكالة تدفع عند مباشرة العمل فعلياً بالكويت.<br>
-            3. <b>ربع الراتب (25%):</b> استقطاع شهري لمدة <b>3 أشهر</b> متتالية من تاريخ أول راتب.
+            2. <b>200 دينار كويتي:</b> استقطاع شهري من الراتب لمدة <b>ثلاثة أشهر متتالية</b> تبدأ من تاريخ مزاولة العمل (أتعاب الوكالة).
         </div>
     </div>
 
@@ -153,7 +153,7 @@
 
     <div class="section">
         <span class="section-title">خامساً: الشروط العامة</span>
-        * رسوم التثبيت (200 ألف) غير مستردة في حال انسحاب المتقدم بعد البدء في الإجراءات.<br>
+        * رسوم التثبيت (200 ألف جنيه) غير مستردة في حال انسحاب المتقدم بعد البدء في الإجراءات.<br>
         * يلتزم الطرف الثاني بقوانين ونظم دولة الكويت وبحسن السير والسلوك طوال فترة التعاقد.
     </div>
 
@@ -181,7 +181,7 @@
             return;
         }
 
-        const message = `*تأكيد عقد توظيف - وكالة نورس*%0A%0Aأنا المعلم: *${name}*%0Aأقر بموافقتي الكاملة على العقد المبدئي لوظيفة الكويت بكافة مزاياه والالتزام بالحضور في الميقات الذي تحدده الوزارة والالتزامات المالية المذكورة.%0A%0A*مرفق صورة التوقيع الشخصي:*`;
+        const message = `*تأكيد عقد توظيف - وكالة نورس*%0A%0Aأنا المعلم: *${name}*%0Aأقر بموافقتي الكاملة على العقد المبدئي لوظيفة الكويت بكافة مزاياه والالتزام بالحضور في الميقات الذي تحدده الوزارة والالتزامات المالية المذكورة (200 ألف مقدم + 200 دينار لـ 3 أشهر).%0A%0A*مرفق صورة التوقيع الشخصي:*`;
         
         const whatsappUrl = `https://wa.me/${phone}?text=${message}`;
         window.open(whatsappUrl, '_blank');
